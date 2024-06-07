@@ -21,6 +21,7 @@ def button_press(button):
 
 window.mainloop()
 # TO DO:
+# basic python learning
 # Make buttons again
 # execute button_press on tk.Button() click or smth 
 # Make working top display

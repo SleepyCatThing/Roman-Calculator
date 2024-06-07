@@ -44,7 +44,4 @@ button_row_3.pack(side=tk.BOTTOM)
 button_row_2.pack(side=tk.BOTTOM)
 button_row_1.pack(side=tk.BOTTOM)
 
-
-
-
 window.mainloop()

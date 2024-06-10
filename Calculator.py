@@ -28,7 +28,12 @@ symbolic_operations = ["+","-","/","*","="]
 operations = [add, sub, div, mult, enter]
 
 # creating display for clear and math display
-
+# store a value comprised of putting in numbers, converting to roman numerals, and then an operation and then start storing a new value 
+# might be hard
+# append digit 
+# display = numStored.toRoman
+# display = enter(stored 1, stored 2, stored op).toRoman
+# clear = remove stored vars
 # creating display for numbers
 j=0
 for i in range (9):

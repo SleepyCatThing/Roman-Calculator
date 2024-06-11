@@ -13,6 +13,8 @@ button_row_3 = tk.Frame(width=100, height=10)
 button_row_4 = tk.Frame(width=100, height=10)
 row = [button_row_1, button_row_2, button_row_3, button_row_4]
 # UNFUCK THIS
+def val(x):
+    return x
 def add(x, y):
     return x + y
 def sub(x, y):
@@ -27,34 +29,25 @@ def enter(num1, num2, operation):
 symbolic_operations = ["+","-","/","*","="]
 operations = [add, sub, div, mult, enter]
 
-# creating display for clear and math display
-# store a value comprised of putting in numbers, converting to roman numerals, and then an operation and then start storing a new value 
-# might be hard
-# append digit 
-# display = numStored.toRoman
-# display = enter(stored 1, stored 2, stored op).toRoman
-# clear = remove stored vars
-# creating display for numbers
 j=0
-for i in range (9):
-    if i == 3:
-        j=j+1
-    if i == 6:
-        j=j+1
+for i in range (10):
+    if (i==0):
+        j=3
     btn = tk.Button(
-            text=i+1,
-            command=i+1,
+            text=i,
+            # unfuck
+            command=lambda a=i:val(a),
             master=row[j],
         )
     btn.pack(side=tk.LEFT)
+    if ((i)%3==0):
+        j=j+1
+    if (i==0):
+        j=0
     # UNFUCK THIS
     # UNFUCK THIS
     # UNFUCK THIS
-btn = tk.Button(
-            text=0,
-            command=0,
-            master=row[3],
-        )
+
 btn.pack(side=tk.LEFT)
 # creating display for symbols
 for i in range (4):
@@ -64,20 +57,35 @@ for i in range (4):
         master=row[i],
     )
     btn.pack(side=tk.LEFT)
+    if (i==3):
+        btn = tk.Button(
+        text=symbolic_operations[i+1],
+        command=operations[i+1],
+        master=row[i],
+        )
+        btn.pack(side=tk.LEFT)
+    
     # UNFUCK THIS
     # UNFUCK THIS
     # UNFUCK THIS
-btn = tk.Button(
-text=symbolic_operations[4],
-command=operations[4],
-master=row[3],
-)
-btn.pack(side=tk.LEFT)
+
 button_row_4.pack(side=tk.BOTTOM)
 button_row_3.pack(side=tk.BOTTOM)
 button_row_2.pack(side=tk.BOTTOM)
 button_row_1.pack(side=tk.BOTTOM)
 
+
+def store (x):
+    if x is int:
+        ()
+# creating display for clear and math display
+# store a value comprised of putting in numbers, converting to roman numerals, and then an operation and then start storing a new value 
+# might be hard
+# append digit 
+# display = numStored.toRoman
+# display = enter(stored 1, stored 2, stored op).toRoman
+# clear = remove stored vars
+# creating display for numbers
 
 
 window.mainloop()

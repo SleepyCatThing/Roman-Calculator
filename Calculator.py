@@ -1,11 +1,20 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import ttk
 
 # Initializing my silly stuff that doesn't need silly operations done to add
 window = tk.Tk() 
 window.title ( "Calculator" ) 
+window = tk.Tk() 
+window.title ( "Calculator" ) 
 
 # initializing operations!
+button_row_0 = ttk.Frame ( width=100, height=10 ) 
+button_row_1 = ttk.Frame ( width=100, height=10 ) 
+button_row_2 = ttk.Frame ( width=100, height=10 ) 
+button_row_3 = ttk.Frame ( width=100, height=10 ) 
+button_row_4 = ttk.Frame ( width=100, height=10 ) 
+
 button_row_0 = ttk.Frame ( width=100, height=10 ) 
 button_row_1 = ttk.Frame ( width=100, height=10 ) 
 button_row_2 = ttk.Frame ( width=100, height=10 ) 
@@ -29,19 +38,12 @@ def sub () :
     
     answer.set(int(previous_number_held.get()) - int(number_held.get()))
 
-<<<<<<< HEAD
 def div () :
     global answer
     if  ( number_held.get() == "0" ) :
         answer="nah, i'd error"
     
     answer.set( int(previous_number_held.get()) / int(number_held.get()))
-=======
-def div(x, y):
-    if (y==0):
-        y=1
-    return x / y
->>>>>>> 5b1b158 (i don't understand buttons yet but this is functional i think?? I hope!)
 
 def mult ( previous_number_held, number_held ) :
     
@@ -49,7 +51,6 @@ def mult ( previous_number_held, number_held ) :
 
 operations = [add, mult, div, sub]
 
-<<<<<<< HEAD
 def storage ( a ) :
     global previous_number_held
     global number_held
@@ -67,18 +68,6 @@ def storage ( a ) :
         operation_held[0]=a
         number_held.set("")
 
-=======
-def storage(a):
-    global digit_held
-    if (isinstance(a, int)):
-        hold[digit_held]=hold[digit_held]*10
-        hold[digit_held]=hold[digit_held]+a
-        print(hold[digit_held])
-    else:
-        hold_operation.append(a)
-        digit_held=digit_held+1
-        hold.append(0)
->>>>>>> 5b1b158 (i don't understand buttons yet but this is functional i think?? I hope!)
     
 def enter () :
     global previous_number_held
@@ -131,7 +120,6 @@ for h in range  ( 4 ) :
             
         btn.pack ( side=tk.LEFT ) 
 
-<<<<<<< HEAD
 def pack_buttons (  ) :
     
     button_row_4.pack ( side = tk.BOTTOM ) 
@@ -143,24 +131,6 @@ def pack_buttons (  ) :
     button_row_1.pack ( side = tk.BOTTOM ) 
     
     button_row_0.pack ( side = tk.BOTTOM )
-=======
-def add_buttons(j):
-    for k in range (10):
-        if (k==0):
-            j=3
-        btn = tk.Button(
-            text=k,
-            # unfuck
-            command=storage(k),
-            master=row[j],
-            )
-        btn.pack(side=tk.LEFT)
-        if ((k)%3==0):
-            j=j+1
-        if (k==0):
-            j=0
-        btn.pack(side=tk.LEFT)
->>>>>>> 5b1b158 (i don't understand buttons yet but this is functional i think?? I hope!)
 
  
 

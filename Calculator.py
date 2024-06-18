@@ -1,20 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import ttk
 
 # Initializing my silly stuff that doesn't need silly operations done to add
 window = tk.Tk() 
 window.title ( "Calculator" ) 
-window = tk.Tk() 
-window.title ( "Calculator" ) 
 
 # initializing operations!
-button_row_0 = ttk.Frame ( width=100, height=10 ) 
-button_row_1 = ttk.Frame ( width=100, height=10 ) 
-button_row_2 = ttk.Frame ( width=100, height=10 ) 
-button_row_3 = ttk.Frame ( width=100, height=10 ) 
-button_row_4 = ttk.Frame ( width=100, height=10 ) 
-
 button_row_0 = ttk.Frame ( width=100, height=10 ) 
 button_row_1 = ttk.Frame ( width=100, height=10 ) 
 button_row_2 = ttk.Frame ( width=100, height=10 ) 

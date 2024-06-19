@@ -3,127 +3,139 @@ from tkinter import ttk
 
 window = tk.Tk() 
 window.title ( "Calculator" ) 
-
-button_row_0 = ttk.Frame ( width=100, height=10 ) 
-button_row_1 = ttk.Frame ( width=100, height=10 ) 
-button_row_2 = ttk.Frame ( width=100, height=10 ) 
-button_row_3 = ttk.Frame ( width=100, height=10 ) 
-button_row_4 = ttk.Frame ( width=100, height=10 ) 
-
-row = [button_row_1, button_row_2, button_row_3, button_row_4]
-symbolic_operations = ["+", "-", "/", "*", "="]
-previous_number_held = tk.StringVar(window, "0") 
-number_held = tk.StringVar(window, "0") 
+clicks=[]
+clicks_2=[]
+operation=""
 answer= tk.StringVar(window, "")
-operation_held = [False]
 answer_display = ttk.Label ( window, textvariable=answer ) 
 
-# methods for the buttons 
 
-def add () :
-    
-    answer.set(int(previous_number_held.get()) + int(number_held.get())) 
+def add (x, y) :
+    x=int(x)
+    y=int(y)
+    return x + y
 
-def sub () :
-    
-    answer.set(int(previous_number_held.get()) - int(number_held.get()))
+def sub (x, y) :
+    x=int(x)
+    y=int(y)
+    return x - y
 
-def div () :
-    global answer
-    if  ( number_held.get() == "0" ) :
-        answer="nah, i'd error"
-    
-    answer.set( int(previous_number_held.get()) / int(number_held.get()))
+def div (x, y) :
+    x=int(x)
+    y=int(y)
+    if (y==0):
+        y=1
+    return x // y
 
-def mult ( previous_number_held, number_held ) :
-    
-    answer.set( int(previous_number_held.get()) * int(number_held.get()))
-
-operations = [add, mult, div, sub]
-
-def storage ( a ) :
-    global previous_number_held
-    global number_held
-    global operation_held
-    
-    if  ( isinstance ( a, int )  ) :
-        if number_held.get()!='':
-            number_held.set((int(number_held.get())*10)+a)
-        else:
-            number_held.set(a)
-        answer.set(number_held.get())
-    
+def mult (x, y) :
+    x=int(x)
+    y=int(y)
+    return x * y
+# Selects operation and prints the result of that operation
+def enter (x,y,z):
+    global held_num
+    global previous_num
+    z=int(z)
+    if (z==0):
+        answer.set(str(add(x, y)))
+        held_num=str(answer.get())
+    elif (z==1):
+        answer.set(str(sub(x, y)))
+        held_num=str(answer.get())
+    elif (z==2):
+        answer.set(str(mult(x, y)))
+        held_num=str(answer.get())
+    elif (z==3):
+        answer.set(str(div(x, y)))
+        held_num=str(answer.get())
     else:
-        previous_number_held.set(number_held.get())
-        operation_held[0]=a
-        number_held.set("")
-
+        answer.set("0")
     
-def enter () :
-    global previous_number_held
-    if (number_held.get()!="" and previous_number_held.get()!=""):
-        result = operation_held [0] ( previous_number_held, number_held )
-        previous_number_held.set ( result ) 
+held_num=0
+previous_num=0
+op=""
+operations=[add, sub, mult, div, enter]
+symbolic_operations=["+", "-", "*", "/", "="]
 
+def storage (a) :
+    global held_num
+    global op
+    global previous_num
+    if not (isinstance(a, int)):
+        g=int(a)
+        op=g
+        previous_num=held_num
+        held_num=0
+        f=symbolic_operations[int(a)]
+        answer.set(f)
+    else:
+        a+=1
+        a=(held_num*10)+a
+        held_num=a
+        answer.set(a)
+        print(a)
+def clear(a):
+    global held_num
+    global previous_num
+    held_num=a
+    held_num=0
+    previous_num=0
+    answer.set("0")
+
+
+display=ttk.Label(window, textvariable=answer)    
+display.grid(row=0, column=0, columnspan=4)
+    
 def add_buttons ( ) :
-    j=0
-    for k in range  ( 10 ) :
-        
-        if  ( k == 0 ) :
-            j = 3
-
-        btn = ttk.Button ( 
+    val=0
+    for i in range(3):
+        for j in range(3):
+            button=tk.Button(
+            text=str(val+1),    
+            command=lambda i=val:storage(i),   
+            )
+            button.grid(row=i+1,column=j)
             
-            text = k,
-            command = storage ( k ) ,
-            master = row[j],
-             ) 
-        
-        btn.pack ( side=tk.LEFT ) 
-        
-        if  (  ( k ) % 3 ==0 ) :
-            j = j + 1
-        
-        if  ( k == 0 ) :
-            j = 0
-        
-        btn.pack ( side=tk.LEFT ) 
-add_buttons ( )
-for h in range  ( 4 ) :
-        
-    btn = ttk.Button ( 
-            
-        text=symbolic_operations[h],
-        command=storage ( operations[h] ) ,
-        master=row[h],
-        ) 
-        
-    btn.pack ( side=tk.LEFT ) 
-        
-    if  ( h == 3 ) :
-            
-        btn = ttk.Button ( 
-        text=symbolic_operations[4],
-        command=enter(),
-        master=row[h],
-        ) 
-            
-        btn.pack ( side=tk.LEFT ) 
+            val += 1
+    button=tk.Button(
+        text="0",
+        command=lambda a=0: storage(a)
+    )
+    button.grid(row=4, column=0)
+    button=tk.Button(
+    text="+",
+    command=lambda a="0": storage(a)
+    )
+    button.grid(row=1, column=3)    
+    button=tk.Button(
+    text="-",
+    command=lambda a="1": storage(a)
+    )
+    button.grid(row=2, column=3)    
+    button=tk.Button(
+    text="*",
+    command=lambda a="2": storage(a)
+    )
+    button.grid(row=3, column=3)    
+    button=tk.Button(
+    text="/",
+    command=lambda a="3": storage(a)
+    )
+    button.grid(row=4, column=2, sticky="w")
+    button=tk.Button(
+    text="=",
+    command=lambda a="4": enter (previous_num, held_num, op)
+    )
+    button.grid(row=4, column=3)
+    button=tk.Button(
+        text="c",
+        command=lambda a=0: clear(a)
+    )
+    button.grid(row=4, column=1)    
+    
 
-def pack_buttons (  ) :
-    
-    button_row_4.pack ( side = tk.BOTTOM ) 
-    
-    button_row_3.pack ( side = tk.BOTTOM ) 
-    
-    button_row_2.pack ( side = tk.BOTTOM ) 
-    
-    button_row_1.pack ( side = tk.BOTTOM ) 
-    
-    button_row_0.pack ( side = tk.BOTTOM )
 
- 
 
-pack_buttons (  ) 
-answer_display.pack()
+
+add_buttons()
 window.mainloop (  ) 

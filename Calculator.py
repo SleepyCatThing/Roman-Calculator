@@ -8,6 +8,22 @@ import customtkinter as ct
 local variable names go a-z
 fix the fuckass numbers method, clarity over optimization
 clean code
+CREDITS 
+CREDITS 
+CREDITS 
+CREDITS 
+CREDITS 
+CREDITS 
+CREDITS 
+
+CREDITS 
+CREDITS 
+CREDITS 
+CREDITS 
+CREDITS 
+
+CREDITS 
+
 '''
 
 window = ct.CTk() 

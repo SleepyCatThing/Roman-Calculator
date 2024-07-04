@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "roman-calculator"
+version = "0.1.0"
+description = "A silly little calculator"
+authors = ["Cat Gaming"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+roman = "^4.2"
+customtkinter = "^5.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
